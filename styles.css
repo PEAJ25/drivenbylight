@@ -638,7 +638,7 @@ a:hover {
 /* Contact Section */
 .contact {
     padding: var(--spacing-4xl) 0;
-    background-color: var(--color-white);
+    background-color: #FAF9F7;
 }
 
 .contact-header {
@@ -689,7 +689,6 @@ a:hover {
     width: 20px;
     height: 20px;
     background-color: var(--color-primary);
-    border-radius: var(--border-radius-full);
 }
 
 .contact-btn:hover .contact-icon {
@@ -699,48 +698,56 @@ a:hover {
 .social-links {
     display: flex;
     gap: var(--spacing-md);
+    justify-content: center;
 }
 
 .social-link {
-    width: 50px;
-    height: 50px;
-    border-radius: var(--border-radius-full);
-    background-color: var(--color-background);
-    border: 2px solid var(--color-primary);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #FAF9F7;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .social-link:hover {
-    background-color: var(--color-primary);
-    transform: scale(1.1);
+    background-color: #001427;
 }
 
 .social-icon {
-    width: 20px;
-    height: 20px;
-    background-color: var(--color-primary);
-    border-radius: var(--border-radius-full);
+    width: 24px;
+    height: 24px;
+    transition: filter 0.3s ease;
 }
 
 .social-link:hover .social-icon {
-    background-color: var(--color-white);
+    filter: brightness(0) invert(1);
 }
 
 /* Footer */
 .footer {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: #FAF9F7;
+    color: #001427;
     text-align: center;
     padding: var(--spacing-lg) 0;
 }
 
 .footer p {
     margin: 0;
-    font-size: 0.9rem;
-    opacity: 0.8;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+.footer a {
+    color: #001427;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+
+.footer a:hover {
+    opacity: 0.7;
 }
 
 /* Responsive Design */
