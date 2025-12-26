@@ -49,10 +49,15 @@ html {
 
 body {
     font-family: var(--font-sans);
+    font-size: 16px;
     line-height: 1.6;
-    color: var(--color-primary);
-    background-color: var(--color-background);
+    color: var(--color-text);
+    background-color: var(--color-white);
     overflow-x: hidden;
+}
+
+ul, ol {
+    list-style: none;
 }
 
 .container {
@@ -75,10 +80,6 @@ h1 {
     letter-spacing: -0.02em;
 }
 
-h2 {
-    font-size: 3rem;
-    letter-spacing: -0.01em;
-}
 
 h3 {
     font-size: 2rem;
@@ -89,6 +90,8 @@ p {
     font-weight: 500;
     line-height: 1.7;
     color: #001427;
+    max-width: 480px;
+    text-align: left;
 }
 
 a {
@@ -103,21 +106,23 @@ a:hover {
 
 /* Header and Navigation */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--color-white);
-    box-shadow: var(--shadow-sm);
-    z-index: 1000;
-    transition: all 0.3s ease;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 216px !important;
+    background-color: var(--color-white) !important;
+    box-shadow: none !important;
+    z-index: 1000 !important;
+    transition: all 0.3s ease !important;
 }
 
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 0 160px;
+    height: 216px;
 }
 
 .nav-brand {
@@ -127,7 +132,7 @@ a:hover {
 }
 
 .nav-logo {
-    height: 40px;
+    height: 72px;
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -205,8 +210,8 @@ a:hover {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    height: 680px;
+    min-height: 680px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -223,7 +228,7 @@ a:hover {
     overflow: hidden;
 }
 
-.hero-video {
+.hero-image {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -233,7 +238,6 @@ a:hover {
     min-height: 100%;
     transform: translate(-50%, -50%);
     object-fit: cover;
-    pointer-events: none;
 }
 
 .play-button {
@@ -352,40 +356,85 @@ a:hover {
 }
 
 .scroll-indicator {
-    position: absolute;
-    bottom: var(--spacing-lg);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    opacity: 1;
-    transition: opacity 0.3s ease;
+    position: relative !important;
+    height: 64px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: -32px !important;
+    z-index: 3 !important;
+    opacity: 1 !important;
+    transition: opacity 0.3s ease !important;
 }
 
-.scroll-arrow {
-    display: block;
+.scroll-arrow-link {
+    display: inline-block;
+    text-decoration: none;
+    animation: bounce 2s infinite;
+}
+
+.scroll-arrow-icon {
     width: 30px;
     height: 30px;
-    border-right: 2px solid var(--color-white);
-    border-bottom: 2px solid var(--color-white);
-    transform: rotate(45deg);
-    animation: bounce 2s infinite;
+    filter: brightness(0) invert(1);
 }
 
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
-        transform: rotate(45deg) translateY(0);
+        transform: translateY(0);
     }
     40% {
-        transform: rotate(45deg) translateY(-10px);
+        transform: translateY(-10px);
     }
     60% {
-        transform: rotate(45deg) translateY(-5px);
+        transform: translateY(-5px);
     }
+}
+
+/* Projecten Header Section */
+.projecten-header {
+    width: 100%;
+    background-color: var(--color-white);
+}
+
+.projecten-header-content {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.projecten-header-left {
+    flex: 1;
+    padding: 120px 0;
+    padding-left: 160px;
+}
+
+.projecten-header-right {
+    flex: 1;
+    padding: 190px 160px;
+}
+
+.projecten-header-title {
+    font-family: var(--font-serif);
+    font-size: 112px;
+    font-weight: 700;
+    line-height: 120px;
+    color: var(--color-primary);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.projecten-header-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-text);
+    width: 480px;
+    margin: 0;
 }
 
 /* Projecten Section */
 .projecten {
-    padding: var(--spacing-4xl) 0;
+    padding: 0;
     background-color: var(--color-white);
 }
 
@@ -404,6 +453,170 @@ a:hover {
     white-space: nowrap;
 }
 
+/* Project Carousel - Full Width */
+.project-carousel {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin-left: calc(-50vw + 50%);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+}
+
+.project-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.project-slide.active {
+    opacity: 1;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.project-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-content {
+    position: absolute;
+    top: 50%;
+    left: 160px;
+    transform: translateY(-50%);
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+.project-content h3 {
+    font-family: var(--font-serif);
+    font-size: 112px;
+    font-weight: 700;
+    line-height: 120px;
+    color: #ffffff;
+    margin-bottom: var(--spacing-lg);
+    padding: 0 0 160px 160px;
+}
+
+.project-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 600px;
+}
+
+.carousel-controls {
+    position: absolute;
+    bottom: 160px;
+    left: 160px;
+    padding: 0 0 160px 160px;
+    display: flex;
+    gap: 24px;
+    pointer-events: none;
+}
+
+.carousel-btn {
+    pointer-events: all;
+    width: 64px !important;
+    height: 64px !important;
+    background-color: transparent !important;
+    border: 2px solid #ffffff;
+    border-radius: var(--border-radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-btn.next {
+    background-color: transparent !important;
+    border: 2px solid #ffffff !important;
+}
+
+.carousel-btn:hover {
+    background-color: #001427 !important;
+    border-color: transparent !important;
+}
+
+
+.carousel-pagination {
+    position: absolute;
+    bottom: var(--spacing-4xl);
+    right: var(--spacing-4xl);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-sm);
+    padding: 0 0 160px 160px;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+    overflow: hidden;
+    padding: 0 160px 160px 0;
+}
+
+.progress-fill {
+    height: 2px;
+    background-color: #ffffff;
+    width: 33.33%;
+    transition: width 0.6s ease;
+}
+
+.pagination {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.page-number {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.page-number.current {
+    font-weight: 700;
+    color: #ffffff;
+}
 
 /* Dak en Gevelbedekking Section */
 .dak-gevel {
@@ -501,7 +714,7 @@ a:hover {
 
 /* Services Section */
 .services {
-    padding: var(--spacing-4xl) 0;
+    padding: 0;
     background-color: var(--color-white);
 }
 
@@ -538,7 +751,7 @@ a:hover {
 
 .service-title {
     font-family: var(--font-serif);
-    font-size: 3rem;
+    font-size: 112px !important;
     margin-bottom: var(--spacing-md);
     color: var(--color-primary);
 }
@@ -580,10 +793,113 @@ a:hover {
     padding: var(--spacing-2xl);
 }
 
-.photo-service-background {
+/* Photo Carousel */
+.photo-carousel {
+    position: relative;
     width: 100%;
     height: 100%;
-    background: url('https://picsum.photos/seed/statue-art/1920/1080.jpg') center/cover no-repeat;
+    overflow: hidden;
+}
+
+.photo-carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+}
+
+.photo-carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-carousel-controls {
+    position: absolute;
+    bottom: 160px;
+    left: 160px;
+    display: flex;
+    gap: 24px;
+    pointer-events: none;
+}
+
+.photo-carousel-btn {
+    pointer-events: all;
+    width: 64px;
+    height: 64px;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: var(--border-radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.photo-carousel-btn:hover {
+    background-color: #001427;
+    border-color: transparent;
+}
+
+.photo-carousel-arrow {
+    width: 24px;
+    height: 24px;
+    transition: filter 0.3s ease;
+}
+
+.photo-carousel-btn:hover .photo-carousel-arrow {
+    filter: brightness(0) invert(1);
+}
+
+.photo-carousel-progress {
+    position: absolute;
+    bottom: 160px;
+    right: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-sm);
+}
+
+.photo-progress-bar {
+    width: 200px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.photo-progress-fill {
+    height: 100%;
+    background-color: #ffffff;
+    width: 33.33%;
+    transition: width 0.6s ease;
+}
+
+.photo-pagination {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.photo-page-number {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.photo-page-number.current {
+    font-weight: 700;
+    color: #ffffff;
 }
 
 .photo-service-content {
@@ -592,7 +908,7 @@ a:hover {
 
 .photo-service-title {
     font-family: var(--font-serif);
-    font-size: 3rem;
+    font-size: 112px !important;
     margin-bottom: var(--spacing-md);
     color: var(--color-primary);
 }
@@ -609,36 +925,48 @@ a:hover {
     background-color: var(--color-background);
 }
 
+.clients-header {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.clients-title {
+    font-family: var(--font-sans);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: var(--color-primary);
+    margin: 0;
+}
+
 .clients-grid {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 160px;
     flex-wrap: wrap;
-    gap: var(--spacing-xl);
 }
 
 .client-logo {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 2px solid var(--color-primary);
-    border-radius: var(--border-radius-md);
-    min-width: 80px;
-    text-align: center;
-    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.client-logo:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+.client-logo-img {
+    max-height: 64px;
+    width: auto;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    cursor: default;
 }
 
 /* Contact Section */
 .contact {
     padding: var(--spacing-4xl) 0;
     background-color: #FAF9F7;
+    text-align: center;
 }
 
 .contact-header {
@@ -646,6 +974,10 @@ a:hover {
     align-items: center;
     gap: var(--spacing-2xl);
     margin-bottom: var(--spacing-3xl);
+}
+
+.contact-description {
+    max-width: 480px;
 }
 
 .contact-title {
@@ -663,6 +995,7 @@ a:hover {
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-2xl);
     max-width: 400px;
+    align-items: center;
 }
 
 .contact-btn {
@@ -689,6 +1022,7 @@ a:hover {
     width: 20px;
     height: 20px;
     background-color: var(--color-primary);
+    border-radius: var(--border-radius-full);
 }
 
 .contact-btn:hover .contact-icon {
@@ -697,7 +1031,7 @@ a:hover {
 
 .social-links {
     display: flex;
-    gap: var(--spacing-md);
+    gap: 48px;
     justify-content: center;
 }
 
@@ -705,11 +1039,11 @@ a:hover {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #FAF9F7;
+    background-color: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .social-link:hover {
@@ -717,13 +1051,25 @@ a:hover {
 }
 
 .social-icon {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
     transition: filter 0.3s ease;
 }
 
 .social-link:hover .social-icon {
     filter: brightness(0) invert(1);
+}
+
+/* Fade in animation for sections */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Footer */
@@ -738,15 +1084,28 @@ a:hover {
     margin: 0;
     font-size: 24px;
     line-height: 40px;
+    max-width: none;
+    text-align: center;
 }
 
-.footer a {
+.footer-link {
     color: #001427;
-    text-decoration: underline;
+    text-decoration: none;
+    position: relative;
     transition: opacity 0.3s ease;
 }
 
-.footer a:hover {
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #001427;
+}
+
+.footer-link:hover {
     opacity: 0.7;
 }
 
