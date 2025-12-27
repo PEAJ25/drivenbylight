@@ -114,7 +114,8 @@ a:hover {
     background-color: var(--color-white) !important;
     box-shadow: none !important;
     z-index: 1000 !important;
-    transition: all 0.3s ease !important;
+    transition: none !important;
+    transform: none !important;
 }
 
 .nav {
@@ -139,6 +140,91 @@ a:hover {
 
 .nav-logo:hover {
     transform: scale(1.05);
+}
+
+/* Cookie Notice */
+.cookie-notice {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    background-color: rgba(0, 20, 39, 1);
+    color: #ffffff;
+    padding: 40px;
+    border-radius: 24px;
+    width: 569px;
+    z-index: 1001;
+}
+
+.cookie-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cookie-title {
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: #FFFFFF;
+    width: 418px;
+    height: 32px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0;
+}
+
+.cookie-text {
+    font-family: var(--font-sans);
+    font-size: 20px;
+    line-height: 32px;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0;
+}
+
+.cookie-link {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.cookie-link:hover {
+    text-decoration: none;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 24px;
+}
+
+.cookie-accept-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 40px;
+    width: 217px;
+    height: 72px;
+    border-radius: 80px;
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.cookie-accept-btn:hover {
+    background-color: #ffffff;
+    color: #001427;
 }
 
 .nav-toggle {
@@ -228,7 +314,7 @@ a:hover {
     overflow: hidden;
 }
 
-.hero-image {
+.hero-video {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -238,6 +324,7 @@ a:hover {
     min-height: 100%;
     transform: translate(-50%, -50%);
     object-fit: cover;
+    z-index: 1;
 }
 
 .play-button {
@@ -374,8 +461,8 @@ a:hover {
 }
 
 .scroll-arrow-icon {
-    width: 30px;
-    height: 30px;
+    width: 64px;
+    height: 64px;
     filter: brightness(0) invert(1);
 }
 
@@ -407,11 +494,15 @@ a:hover {
     flex: 1;
     padding: 120px 0;
     padding-left: 160px;
+    display: flex;
+    align-items: center;
 }
 
 .projecten-header-right {
     flex: 1;
     padding: 190px 160px;
+    display: flex;
+    align-items: center;
 }
 
 .projecten-header-title {
@@ -720,19 +811,23 @@ a:hover {
 
 .services-container {
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: 0;
+    width: 100% !important;
+    height: 100vh;
+    min-height: 600px;
 }
 
 .service-column {
     display: flex;
     align-items: center;
     min-height: 400px;
+    width: 50% !important;
+    flex: none;
 }
 
 .video-services {
     justify-content: flex-start;
-    padding: var(--spacing-2xl);
+    padding-left: 160px;
 }
 
 .photo-services {
@@ -773,23 +868,26 @@ a:hover {
 .photo-service-container {
     display: flex;
     gap: 0;
-    width: 100%;
+    width: 100% !important;
     height: 100vh;
     min-height: 600px;
 }
 
 .photo-service-column {
-    flex: 1;
+    flex: none;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 50% !important;
 }
 
-.photo-column {
-    padding: 0;
+.photo-service-column.photo-column {
+    justify-content: flex-start;
 }
 
-.text-column {
+.photo-service-column.text-column {
+    justify-content: flex-end;
     padding: var(--spacing-2xl);
 }
 
@@ -809,8 +907,16 @@ a:hover {
 }
 
 .photo-carousel-slide {
-    min-width: 100%;
+    min-width: 50%;
     height: 100%;
+    transition: transform 0.6s ease;
+}
+
+.photo-carousel-slide.active {
+    opacity: 1;
+}
+
+.photo-carousel-slide {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -942,10 +1048,12 @@ a:hover {
 
 .clients-grid {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 160px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: visible;
+    padding-left: 160px;
 }
 
 .client-logo {
@@ -957,7 +1065,7 @@ a:hover {
 .client-logo-img {
     max-height: 64px;
     width: auto;
-    opacity: 0.7;
+    opacity: 1;
     transition: all 0.3s ease;
     cursor: default;
 }

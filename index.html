@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+content="
+default-src 'self';
+frame-src https://www.youtube.com https://www.youtube-nocookie.com;
+script-src 'self' https://www.youtube.com https://s.ytimg.com;
+img-src 'self' https://i.ytimg.com data:;
+">
     <title>Studio Drivenbylight</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
@@ -25,16 +32,38 @@
                 <li><a href="#contact">contact</a></li>
             </ul>
         </nav>
+        
+        <!-- Cookie Notice -->
+        <div class="cookie-notice">
+            <div class="cookie-content">
+                <h4 class="cookie-title">Wij hechten waarde aan je privacy</h4>
+                <p class="cookie-text">
+                    We gebruiken cookies om onze diensten te analyseren. Als je verder surft, ga je akkoord met het gebruik ervan. Je kunt meer informatie vinden door op de knop 'Cookies' te klikken.
+                </p>
+                <div class="cookie-buttons">
+                    <button class="cookie-accept-btn" aria-label="Accepteer cookies">Accepteren</button>
+                    <button class="cookie-accept-btn" aria-label="Afwijzen cookies">Afwijzen</button>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-background">
-                <img src="images/hero.png" alt="Hero" class="hero-image">
+                <iframe
+  src="https://www.youtube.com/embed/U9xosICGMHc
+"
+  width="100%"
+  height="400"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
             </div>
             <div class="hero-overlay">
-            </div>
             </div>
         </section>
 
@@ -207,6 +236,15 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                         </div>
                         <div class="client-logo">
                             <img src="images/logo-client-venema.svg" alt="Venema" class="client-logo-img">
+                        </div>
+                        <div class="client-logo">
+                            <img src="images/logo-client-jwadam.svg" alt="JWAdam" class="client-logo-img">
+                        </div>
+                        <div class="client-logo">
+                            <img src="images/logo-client-zinklook.svg" alt="Zinklook" class="client-logo-img">
+                        </div>
+                        <div class="client-logo">
+                            <img src="images/logo-sdbl.svg" alt="SDBL" class="client-logo-img">
                         </div>
                     </div>
                 </div>
