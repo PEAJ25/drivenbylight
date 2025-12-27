@@ -78,20 +78,38 @@
 
         <!-- Projecten Section -->
         <section id="projecten" class="projecten fade-in">
-            <div class="project-carousel">
+            <div class="projecten-carousel">
                 <div class="carousel-container">
                     <div class="carousel-track">
                         <div class="project-slide active">
                             <div class="project-image">
                                 <img src="images/project-photo-01.png" alt="Project 1">
+                                <div class="projecten-video-background">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/tGa1130if3U?autoplay=1&mute=1&loop=1&playlist=tGa1130if3U&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&rel=0"
+                                        class="projecten-video"
+                                        frameborder="0"
+                                        allow="autoplay; encrypted-media"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
                             </div>
                             <div class="project-content">
-                                <h3>Dak en <br>gevelbedekking</h3>
+                                <h3>dak en <br>gevelbedekking</h3>
                             </div>
                         </div>
                         <div class="project-slide">
                             <div class="project-image">
                                 <img src="images/project-photo-02.png" alt="Project 2">
+                                <div class="projecten-video-background">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/tGa1130if3U?autoplay=1&mute=1&loop=1&playlist=tGa1130if3U&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&rel=0"
+                                        class="projecten-video"
+                                        frameborder="0"
+                                        allow="autoplay; encrypted-media"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
                             </div>
                             <div class="project-content">
                                 <h3>customer<br> experience agency</h3>
@@ -100,6 +118,15 @@
                         <div class="project-slide">
                             <div class="project-image">
                                 <img src="images/project-photo-01.png" alt="Project 3">
+                                <div class="projecten-video-background">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/tGa1130if3U?autoplay=1&mute=1&loop=1&playlist=tGa1130if3U&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&rel=0"
+                                        class="projecten-video"
+                                        frameborder="0"
+                                        allow="autoplay; encrypted-media"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
                             </div>
                             <div class="project-content">
                                 <h3>project<br>
@@ -337,10 +364,10 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         });
 
         // Project Carousel functionality
-        const projectCarouselBtns = document.querySelectorAll('.project-carousel .carousel-btn');
-        const projectPaginationNumbers = document.querySelectorAll('.project-carousel .page-number');
-        const projectProgressFill = document.querySelector('.project-carousel .progress-fill');
-        const projectCarouselTrack = document.querySelector('.project-carousel .carousel-track');
+        const projectCarouselBtns = document.querySelectorAll('.projecten-carousel .carousel-btn');
+        const projectPaginationNumbers = document.querySelectorAll('.projecten-carousel .page-number');
+        const projectProgressFill = document.querySelector('.projecten-carousel .progress-fill');
+        const projectCarouselTrack = document.querySelector('.projecten-carousel .carousel-track');
         let currentProjectSlide = 0;
         const totalProjectSlides = 3;
         
