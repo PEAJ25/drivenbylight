@@ -285,14 +285,14 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                 </div>
                 
                 <div class="contact-methods">
-                    <a href="mailto:info@drivenbylight.nl" class="contact-btn">
+                    <a href="mailto:info@drivenbylight.com" class="contact-btn">
                         Stuur een e-mail
                     </a>
                     <a href="tel:+31651351527" class="contact-btn">
                         Bel
                     </a>
                     <a href="https://wa.me/31651351527" class="contact-btn">
-                        Whatsapp
+                        WhatsApp
                     </a>
                     <a href="https://wa.me/31651351527" class="contact-btn">
                         Navigeer naar de studio
@@ -321,6 +321,39 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
     </footer>
 
     <script>
+        // Cookie notice functionality
+        const cookieNotice = document.querySelector('.cookie-notice');
+        const acceptBtn = document.querySelector('.cookie-accept-btn');
+        const rejectBtn = document.querySelectorAll('.cookie-accept-btn')[1]; // Second button is "Afwijzen"
+        
+        // Check if user already made a choice
+        if (localStorage.getItem('cookieChoice')) {
+            cookieNotice.style.display = 'none';
+        }
+        
+        // Accept cookies
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieChoice', 'accepted');
+            cookieNotice.style.display = 'none';
+            // Here you can initialize analytics or other cookie-dependent features
+        });
+        
+        // Reject cookies
+        rejectBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieChoice', 'rejected');
+            cookieNotice.style.display = 'none';
+            // Ensure no cookies are used
+            disableCookies();
+        });
+        
+        function disableCookies() {
+            // Prevent any cookie-based tracking
+            // Clear existing cookies if any
+            document.cookie.split(";").forEach(function(c) { 
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+            });
+        }
+        
         // Mobile navigation toggle
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
