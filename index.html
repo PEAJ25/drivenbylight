@@ -191,13 +191,13 @@ Voor luchtopnames zijn wij geregistreerd bij de Dienst Wegverkeer (RDW) en gecer
                     <div class="photo-carousel">
                         <div class="photo-carousel-track">
                             <div class="photo-carousel-slide active">
-                                <img src="images/photoservices-photo.png" alt="Photo Service 1">
+                                <img src="images/photo-services-photo-01.png" alt="Photo Service 1">
                             </div>
                             <div class="photo-carousel-slide">
-                                <img src="images/project-photo-01.png" alt="Photo Service 2">
+                                <img src="images/photo-services-photo-02.png" alt="Photo Service 2">
                             </div>
                             <div class="photo-carousel-slide">
-                                <img src="images/videoservices-photo.png" alt="Photo Service 3">
+                                <img src="images/photo-services-photo-03.png" alt="Photo Service 3">
                             </div>
                         </div>
                         
@@ -459,8 +459,11 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         });
         
         function updatePhotoCarousel() {
-            // Update slide position with ease
-            photoCarouselTrack.style.transform = `translateX(-${currentPhotoSlide * 100}%)`;
+            // Update active slide
+            const photoSlides = document.querySelectorAll('.photo-carousel-slide');
+            photoSlides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentPhotoSlide);
+            });
             
             // Update progress bar
             const progressPercentage = ((currentPhotoSlide + 1) / totalPhotoSlides) * 100;
