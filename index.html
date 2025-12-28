@@ -83,27 +83,27 @@
                     <div class="carousel-track">
                         <div class="project-slide active">
                             <div class="project-image">
-                                <img src="images/project-photo-01.png" alt="Project 1">
+                                <img src="images/projects/thumb-venema-teylers.jpg" alt="Project 1">
                                 <div class="projecten-video-background">
                                     <iframe 
                                         src="https://www.youtube.com/embed/tGa1130if3U?autoplay=1&mute=1&loop=1&playlist=tGa1130if3U&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&rel=0"
                                         class="projecten-video"
-                                        frameborder="0"
+                                        frameborder="0" 
                                         allow="autoplay; encrypted-media"
                                         allowfullscreen>
                                     </iframe>
                                 </div>
                             </div>
                             <div class="project-content">
-                                <h3>dak en <br>gevelbedekking</h3>
+                                <h3>gevelrestauratie</h3>
                             </div>
                         </div>
                         <div class="project-slide">
                             <div class="project-image">
-                                <img src="images/project-photo-02.png" alt="Project 2">
+                                <img src="images/projects/thumb-essense.jpg" alt="Project 2">
                                 <div class="projecten-video-background">
                                     <iframe 
-                                        src="https://www.youtube.com/embed/tGa1130if3U?autoplay=1&mute=1&loop=1&playlist=tGa1130if3U&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&rel=0"
+                                        src="https://www.youtube.com/embed/0t9ank3M7bc?autoplay=1&mute=1&loop=1&playlist=0t9ank3M7bc&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&rel=0"
                                         class="projecten-video"
                                         frameborder="0"
                                         allow="autoplay; encrypted-media"
@@ -117,10 +117,10 @@
                         </div>
                         <div class="project-slide">
                             <div class="project-image">
-                                <img src="images/project-photo-01.png" alt="Project 3">
+                                <img src="images/projects/thumb-maaraw.jpg" alt="Project 3">
                                 <div class="projecten-video-background">
                                     <iframe 
-                                        src="https://www.youtube.com/embed/tGa1130if3U?autoplay=1&mute=1&loop=1&playlist=tGa1130if3U&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&rel=0"
+                                        src="https://www.youtube.com/embed/EMcoLFqeXag?autoplay=1&mute=1&loop=1&playlist=EMcoLFqeXag&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&rel=0"
                                         class="projecten-video"
                                         frameborder="0"
                                         allow="autoplay; encrypted-media"
@@ -131,7 +131,6 @@
                             <div class="project-content">
                                 <h3>project<br>
                                 management</h3>
-                        
                             </div>
                         </div>
                     </div>
@@ -169,8 +168,8 @@
                         <p class="service-description">
                             Video is een succesvol gereedschap 
 om in contact te komen met jouw bedrijf, 
-project, service of product.
-
+project, service of product.<br>
+<br>
 Voor luchtopnames zijn wij geregistreerd bij de Dienst Wegverkeer (RDW) en gecertificeerd bij de EASA - European Union Aviation Safety Agency.
                         </p>
                     </div>
@@ -421,6 +420,12 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         });
         
         function updateProjectCarousel() {
+            // Update active slide
+            const projectSlides = document.querySelectorAll('.projecten-carousel .project-slide');
+            projectSlides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentProjectSlide);
+            });
+            
             // Update slide position with ease
             projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
             

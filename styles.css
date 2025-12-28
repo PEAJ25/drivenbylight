@@ -110,8 +110,8 @@ h1, h2, h3 {
 }
 
 .highlight-text {
-    background-color: #708D81;
-    color: #ffffff;
+    background-color: #708D81 !important;
+    color: #ffffff !important;
     padding: 8px 16px;
     border-radius: 4px;
     font-weight: 500;
@@ -179,11 +179,6 @@ a:hover {
 .nav-logo {
     height: 72px;
     width: auto;
-    transition: transform 0.3s ease;
-}
-
-.nav-logo:hover {
-    transform: scale(1.05);
 }
 
 /* Cookie Notice */
@@ -325,16 +320,16 @@ a:hover {
     color: var(--color-primary);
     font-family: var(--font-sans);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 18px;
     text-transform: uppercase;
     text-align: right;
     border-radius: var(--border-radius-sm);
     letter-spacing: 0.05em;
+    transition: font-weight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-menu a:hover {
     font-weight: 700;
-    color: #001427;
 }
 
 /* Hero Section */
@@ -500,6 +495,7 @@ a:hover {
     z-index: 10 !important;
     opacity: 1 !important;
     transition: opacity 0.3s ease !important;
+    background-color: #FAF9F7 !important;
 }
 
 .scroll-arrow-link {
@@ -507,6 +503,12 @@ a:hover {
     text-decoration: none;
     width: 64px;
     height: 64px;
+    transition: background-color 0.3s ease;
+    border-radius: 50%;
+}
+
+.scroll-arrow-link:hover {
+    background-color: #ffffff;
 }
 
 .scroll-arrow-icon {
@@ -777,10 +779,14 @@ a:hover {
 }
 
 .projecten-carousel .page-number {
-    font-size: 14px;
+    font-size: 40px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
     transition: all 0.3s ease;
+}
+
+.projecten-carousel .page-number:not(:first-child):not(:last-child) {
+    display: none;
 }
 
 .projecten-carousel .page-number.current {
@@ -1251,7 +1257,7 @@ a:hover {
 .contact-methods {
     display: flex;
     flex-direction: row;
-    gap: var(--spacing-sm);
+    gap: 40px;
     margin-bottom: var(--spacing-2xl);
     max-width: none;
     align-items: center;
@@ -1482,4 +1488,16 @@ a:hover {
         font-size: 1.1875rem;
         font-weight: 500;
     }
+}
+
+/* Tekstselectie */
+::selection {
+  background: #708D81;
+  color: #ffffff;
+}
+
+/* Firefox vereist aparte selector */
+::-moz-selection {
+  background: #708D81;
+  color: #ffffff;
 }
