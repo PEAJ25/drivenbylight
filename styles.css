@@ -328,12 +328,12 @@ a:hover {
     text-transform: uppercase;
     text-align: right;
     border-radius: var(--border-radius-sm);
-    transition: background-color 0.3s ease;
     letter-spacing: 0.05em;
 }
 
 .nav-menu a:hover {
-    background-color: var(--color-background);
+    font-weight: 700;
+    color: #001427;
 }
 
 /* Hero Section */
@@ -496,7 +496,7 @@ a:hover {
     justify-content: center !important;
     align-items: center !important;
     margin-top: 0 !important;
-    z-index: 3 !important;
+    z-index: 10 !important;
     opacity: 1 !important;
     transition: opacity 0.3s ease !important;
 }
@@ -504,14 +504,14 @@ a:hover {
 .scroll-arrow-link {
     display: inline-block;
     text-decoration: none;
-    animation: bounce 2s infinite;
+    width: 64px;
+    height: 64px;
 }
 
 .scroll-arrow-icon {
     width: 64px;
     height: 64px;
-    filter: brightness(0) invert(1);
-    padding: 80px 0 64px 0;
+    filter: brightness(0) saturate(100%) invert(8%) sepia(25%) saturate(4725%) hue-rotate(193deg) brightness(95%) contrast(88%);
 }
 
 @keyframes bounce {
@@ -907,19 +907,11 @@ a:hover {
     justify-content: flex-end;
     margin: 0;
     padding: 0;
-    width: 960px !important;
 }
 
 .video-services {
     justify-content: flex-start;
     padding-left: 160px;
-    width: 960px !important;
-}
-
-.photo-services {
-    justify-content: flex-end;
-    margin: 0;
-    padding: 0;
 }
 
 .photo-services .service-background {
@@ -958,16 +950,15 @@ a:hover {
     display: flex;
     gap: 0;
     width: 100% !important;
-    height: 100vh;
+    height: 1080px;
     min-height: 600px;
 }
 
 .photo-service-column {
     flex: none;
-    min-height: 100vh;
+    min-height: 1080px;
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 50% !important;
 }
 
@@ -976,9 +967,7 @@ a:hover {
 }
 
 .photo-service-column.text-column {
-    justify-content: flex-end;
-    padding: var(--spacing-2xl);
-    width: 960px !important;
+    padding-left: 160px;
 }
 
 /* Photo Carousel */
@@ -991,7 +980,7 @@ a:hover {
 
 .photo-carousel-track {
     display: flex;
-    width: 100%;
+    width: 50vw;
     height: 1080px;
     transition: transform 0.6s ease;
     overflow: hidden;
@@ -999,7 +988,7 @@ a:hover {
 }
 
 .photo-carousel-slide {
-    width: 960px;
+    width: 50vw;
     height: 1080px;
     transition: transform 0.6s ease;
     flex-shrink: 0;
@@ -1164,6 +1153,16 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 48px !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.clients-header::-webkit-scrollbar {
+    display: none;
 }
 
 .clients-title {
@@ -1173,6 +1172,7 @@ a:hover {
     line-height: 32px;
     color: var(--color-primary);
     margin: 0;
+    padding-left: 160px;
 }
 
 .clients-grid {
@@ -1249,13 +1249,15 @@ a:hover {
 
 .contact-methods {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: var(--spacing-sm);
     margin-bottom: var(--spacing-2xl);
-    max-width: 400px;
+    max-width: none;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .contact-btn {
@@ -1398,8 +1400,12 @@ a:hover {
     }
 }
 
-/* Tablet (810px and up) */
-@media (min-width: 810px) {
+/* Desktop (1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        padding: 0 var(--spacing-lg);
+    }
+    
     .nav-toggle {
         display: none;
     }
@@ -1424,41 +1430,6 @@ a:hover {
         padding: var(--spacing-sm) var(--spacing-md);
         text-align: left;
         font-size: 1.125rem;
-    }
-    
-    .hero-title {
-        font-size: 3.5rem;
-    }
-    
-    .section-title,
-    .contact-title {
-        font-size: 5rem;
-    }
-    
-    .dak-gevel-title {
-        font-size: 5rem;
-    }
-    
-    .services-container {
-        flex-direction: row;
-        gap: var(--spacing-lg);
-    }
-    
-    .service-column {
-        flex: 1;
-    }
-    
-        
-    .contact-methods {
-        flex-direction: row;
-        max-width: none;
-    }
-}
-
-/* Desktop (1200px and up) */
-@media (min-width: 1200px) {
-    .container {
-        padding: 0 var(--spacing-lg);
     }
     
     .nav-menu a {
