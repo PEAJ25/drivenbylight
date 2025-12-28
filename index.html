@@ -446,6 +446,46 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         const photoCarouselTrack = document.querySelector('.photo-carousel-track');
         let currentPhotoSlide = 0;
         const totalPhotoSlides = 3;
+        let autoProgressInterval;
+        let progressInterval;
+        let currentProgress = 0;
+        const progressDuration = 5000; // 5 seconds per slide
+        const progressStep = 100 / (progressDuration / 50); // Update every 50ms
+        
+        function startAutoProgress() {
+            // Reset progress
+            currentProgress = 0;
+            photoProgressFill.style.width = '0%';
+            
+            // Clear any existing intervals
+            clearInterval(autoProgressInterval);
+            clearInterval(progressInterval);
+            
+            // Start progress bar animation
+            progressInterval = setInterval(() => {
+                currentProgress += progressStep;
+                if (currentProgress >= 100) {
+                    currentProgress = 100;
+                    photoProgressFill.style.width = '100%';
+                    
+                    // Move to next slide
+                    setTimeout(() => {
+                        currentPhotoSlide++;
+                        if (currentPhotoSlide >= totalPhotoSlides) currentPhotoSlide = 0;
+                        updatePhotoCarousel();
+                        startAutoProgress(); // Restart progress for next slide
+                    }, 200);
+                } else {
+                    photoProgressFill.style.width = `${currentProgress}%`;
+                }
+            }, 50);
+        }
+        
+        function resetAutoProgress() {
+            clearInterval(autoProgressInterval);
+            clearInterval(progressInterval);
+            startAutoProgress();
+        }
         
         photoCarouselBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -460,6 +500,7 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                 if (currentPhotoSlide >= totalPhotoSlides) currentPhotoSlide = 0;
                 
                 updatePhotoCarousel();
+                resetAutoProgress(); // Restart auto progress after user interaction
             });
         });
         
@@ -470,15 +511,17 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                 slide.classList.toggle('active', index === currentPhotoSlide);
             });
             
-            // Update progress bar
-            const progressPercentage = ((currentPhotoSlide + 1) / totalPhotoSlides) * 100;
-            photoProgressFill.style.width = `${progressPercentage}%`;
+            // Reset progress bar to empty for new slide
+            photoProgressFill.style.width = '0%';
             
             // Update pagination numbers
             photoPaginationNumbers.forEach((number, index) => {
                 number.classList.toggle('current', index === currentPhotoSlide);
             });
         }
+        
+        // Start auto progress on page load
+        startAutoProgress();
     </script>
 </body>
 </html>
