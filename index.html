@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="project-content">
-                                <h3>gevelrestauratie</h3>
+                                <h3 class="project-title-1">gevelrestauratie</h3>
                             </div>
                         </div>
                         <div class="project-slide">
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="project-content">
-                                <h3>customer<br> experience agency</h3>
+                                <h3 class="project-title-2">customer<br> experience agency</h3>
                             </div>
                         </div>
                         <div class="project-slide">
@@ -129,7 +129,7 @@
                                 </div>
                             </div>
                             <div class="project-content">
-                                <h3>project<br>
+                                <h3 class="project-title-3">project<br>
                                 management</h3>
                             </div>
                         </div>
@@ -293,7 +293,7 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                     <a href="https://wa.me/31651351527" class="contact-btn">
                         WhatsApp
                     </a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Kamperlaan+170+Haarlem" target="_blank" class="contact-btn">
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Studio+Drivenbylight+Kamperlaan+170+Haarlem" target="_blank" class="contact-btn">
                         Navigeer naar de studio
                     </a>
                 </div>
@@ -402,6 +402,62 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         const projectCarouselTrack = document.querySelector('.projecten-carousel .carousel-track');
         let currentProjectSlide = 0;
         const totalProjectSlides = 3;
+        let projectAutoProgressInterval;
+        let projectProgressInterval;
+        let projectCurrentProgress = 0;
+        const projectProgressDuration = 15000; // 15 seconds per slide
+        const projectProgressStep = 100 / (projectProgressDuration / 50); // Update every 50ms
+        
+        function startProjectAutoProgress() {
+            // Reset progress
+            projectCurrentProgress = 0;
+            projectProgressFill.style.width = '0%';
+            
+            // Clear any existing intervals
+            clearInterval(projectAutoProgressInterval);
+            clearInterval(projectProgressInterval);
+            
+            // Start progress bar animation
+            projectProgressInterval = setInterval(() => {
+                projectCurrentProgress += projectProgressStep;
+                if (projectCurrentProgress >= 100) {
+                    projectCurrentProgress = 100;
+                    projectProgressFill.style.width = '100%';
+                    
+                    // Move to next slide
+                    setTimeout(() => {
+                        const wasLastSlide = currentProjectSlide === totalProjectSlides - 1;
+                        currentProjectSlide++;
+                        if (currentProjectSlide >= totalProjectSlides) currentProjectSlide = 0;
+                        
+                        if (wasLastSlide) {
+                            // Special animation for last to first transition - show both projects
+                            projectCarouselTrack.style.transition = 'none';
+                            projectCarouselTrack.style.transform = `translateX(${totalProjectSlides * 100}%)`;
+                            
+                            setTimeout(() => {
+                                projectCarouselTrack.style.transition = 'transform 0.6s ease';
+                                projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
+                            }, 50);
+                        } else {
+                            // Normal transition - show both projects
+                            projectCarouselTrack.style.transition = 'transform 0.6s ease';
+                            projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
+                        }
+                        
+                        startProjectAutoProgress(); // Restart progress for next slide
+                    }, 200);
+                } else {
+                    projectProgressFill.style.width = `${projectCurrentProgress}%`;
+                }
+            }, 50);
+        }
+        
+        function resetProjectAutoProgress() {
+            clearInterval(projectAutoProgressInterval);
+            clearInterval(projectProgressInterval);
+            startProjectAutoProgress();
+        }
         
         projectCarouselBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -416,6 +472,7 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                 if (currentProjectSlide >= totalProjectSlides) currentProjectSlide = 0;
                 
                 updateProjectCarousel();
+                resetProjectAutoProgress(); // Restart auto progress after user interaction
             });
         });
         
@@ -427,15 +484,21 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
             });
             
             // Update slide position with ease
+            projectCarouselTrack.style.transition = 'transform 0.6s ease';
             projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
             
             // Update progress bar
             const progressPercentage = ((currentProjectSlide + 1) / totalProjectSlides) * 100;
             projectProgressFill.style.width = `${progressPercentage}%`;
             
-            // Update pagination numbers
-            projectPaginationNumbers.forEach((number, index) => {
-                number.classList.toggle('current', index === currentProjectSlide);
+            // Update pagination numbers to show current slide and total slides
+            const projectPageNumbers = document.querySelectorAll('.projecten-carousel .page-number');
+            projectPageNumbers[0].textContent = currentProjectSlide + 1; // Current slide (1-based)
+            projectPageNumbers[2].textContent = totalProjectSlides; // Total slides
+            
+            // Update pagination current state
+            projectPageNumbers.forEach((number, index) => {
+                number.classList.toggle('current', index === 0); // Always highlight first number (current)
             });
         }
 
@@ -514,13 +577,19 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
             // Reset progress bar to empty for new slide
             photoProgressFill.style.width = '0%';
             
-            // Update pagination numbers
-            photoPaginationNumbers.forEach((number, index) => {
-                number.classList.toggle('current', index === currentPhotoSlide);
+            // Update pagination numbers to show current slide and total slides
+            const photoPageNumbers = document.querySelectorAll('.photo-page-number');
+            photoPageNumbers[0].textContent = currentPhotoSlide + 1; // Current slide (1-based)
+            photoPageNumbers[2].textContent = totalPhotoSlides; // Total slides
+            
+            // Update pagination current state
+            photoPageNumbers.forEach((number, index) => {
+                number.classList.toggle('current', index === 0); // Always highlight first number (current)
             });
         }
         
         // Start auto progress on page load
+        startProjectAutoProgress();
         startAutoProgress();
     </script>
 </body>
