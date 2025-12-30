@@ -820,7 +820,10 @@ a:hover::after {
 
 .projecten-carousel .project-title-1,
 .projecten-carousel .project-title-2,
-.projecten-carousel .project-title-3 {
+.projecten-carousel .project-title-3,
+.projecten-carousel .project-title-4,
+.projecten-carousel .project-title-5,
+.projecten-carousel .project-title-6 {
     font-family: var(--font-serif) !important;
     font-size: 112px !important;
     font-weight: 700 !important;
@@ -1694,3 +1697,5 @@ a:hover::after {
   background: #708D81;
   color: #ffffff;
 }
+
+
