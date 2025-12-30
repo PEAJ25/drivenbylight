@@ -614,14 +614,15 @@ a:hover::after {
     text-decoration: none !important;
     width: 64px;
     height: 64px;
-    transition: none !important;
+    transition: opacity 0.3s ease !important;
     border-radius: 50%;
+    opacity: 0.8;
 }
 
 .scroll-arrow-link:hover {
     background-color: #ffffff;
     text-decoration: none !important;
-    transition: none !important;
+    opacity: 1;
 }
 
 .scroll-arrow-icon {
@@ -940,6 +941,17 @@ a:hover::after {
     color: #ffffff;
 }
 
+.projecten-carousel .carousel-btn {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.projecten-carousel .carousel-btn:hover {
+    opacity: 1;
+}
+
+
+
 /* Dak en Gevelbedekking Section */
 .dak-gevel {
     position: relative;
@@ -1156,8 +1168,8 @@ a:hover::after {
     height: 1080px;
     transition: opacity 0.6s ease;
     flex-shrink: 0;
-    position: absolute;
-    opacity: 0;
+    position: relative;
+    opacity: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1166,6 +1178,38 @@ a:hover::after {
 .photo-carousel-slide.active {
     opacity: 1;
     position: relative;
+}
+
+.photo-services .photo-carousel-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.photo-services .photo-carousel-controls {
+    position: absolute;
+    bottom: 160px;
+    left: 160px;
+    display: flex;
+    gap: 24px;
+    pointer-events: all;
+    z-index: 2;
+}
+
+.photo-services .photo-carousel-progress {
+    position: absolute;
+    bottom: 160px;
+    right: 160px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    z-index: 2;
 }
 
 .photo-carousel-slide img {
@@ -1279,6 +1323,7 @@ a:hover::after {
 .photo-page-number:first-child,
 .photo-page-number:last-child {
     font-size: 40px;
+    color: #ffffff;
 }
 
 .photo-page-number.current {
@@ -1698,4 +1743,59 @@ a:hover::after {
   color: #ffffff;
 }
 
+.projecten-carousel .project-slide {
+    position: relative;
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+/* ================================
+   Pagination layout
+   ================================ */
+
+.carousel-pagination {
+    position: absolute;
+    bottom: 0;
+    right: 160px;
+    padding-bottom: 160px;
+
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    z-index: 15;
+}
+
+/* Numbers */
+.page-number {
+    font-size: 40px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.page-number.current {
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.page-number.total {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Progress bar BETWEEN numbers */
+.progress-bar {
+    width: 160px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #ffffff;
+    transition: width 0.6s ease;
+}
 
