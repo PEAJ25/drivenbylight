@@ -165,6 +165,24 @@ a:hover::after {
     width: 100%;
 }
 
+.nav-menu a:hover {
+    color: var(--color-primary) !important;
+    text-decoration: none !important;
+}
+
+.nav-menu a:hover::after {
+    width: 0 !important;
+}
+
+.scroll-arrow-link:hover {
+    color: var(--color-primary) !important;
+    text-decoration: none !important;
+}
+
+.scroll-arrow-link:hover::after {
+    width: 0 !important;
+}
+
 .contact-methods a:hover {
     text-decoration: none !important;
 }
@@ -373,12 +391,7 @@ a:hover::after {
     border-radius: var(--border-radius-sm);
     letter-spacing: 0.05em;
     text-decoration: none !important;
-}
-
-.nav-menu a:hover {
-    text-decoration: none !important;
-    font-weight: 500 !important;
-    color: var(--color-primary) !important;
+    transition: none !important;
 }
 
 /* Projects Header Section */
@@ -598,15 +611,17 @@ a:hover::after {
 
 .scroll-arrow-link {
     display: inline-block;
-    text-decoration: none;
+    text-decoration: none !important;
     width: 64px;
     height: 64px;
-    transition: background-color 0.3s ease;
+    transition: none !important;
     border-radius: 50%;
 }
 
 .scroll-arrow-link:hover {
     background-color: #ffffff;
+    text-decoration: none !important;
+    transition: none !important;
 }
 
 .scroll-arrow-icon {
@@ -823,9 +838,8 @@ a:hover::after {
 
 .projecten-carousel .carousel-controls {
     position: absolute;
-    top: 50%;
+    bottom: 0;
     left: 160px;
-    transform: translateY(-50%);
     padding: 0 0 160px 0 !important;
     display: flex;
     gap: 24px;
@@ -844,7 +858,12 @@ a:hover::after {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: none !important;
+}
+
+.projecten-carousel .carousel-btn.prev.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .projecten-carousel .carousel-btn.next {
@@ -1113,7 +1132,16 @@ a:hover::after {
 
 .photo-carousel-track {
     display: flex;
-    width: 50vw;
+    width: 300vw;
+    height: 1080px;
+    transition: transform 0.6s ease;
+    overflow: hidden;
+    gap: 0;
+}
+
+.photo-service-section .photo-carousel-track {
+    display: flex;
+    width: 300vw;
     height: 1080px;
     transition: transform 0.6s ease;
     overflow: hidden;
@@ -1283,8 +1311,20 @@ a:hover::after {
     margin: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 400px;
+    padding-left: 160px;
+    padding-right: 0;
+    overflow: visible;
+}
+
+.clients-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 48px;
+    width: 100%;
+    overflow: visible;
 }
 
 .clients-header {
@@ -1297,10 +1337,7 @@ a:hover::after {
     -ms-overflow-style: none;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-}
-
-.clients-header::-webkit-scrollbar {
-    display: none;
+    flex-shrink: 0;
 }
 
 .clients-title {
@@ -1310,7 +1347,8 @@ a:hover::after {
     line-height: 32px;
     color: var(--color-primary);
     margin: 0;
-    padding-left: 160px !important;
+    padding: 0 !important;
+    flex-shrink: 0;
 }
 
 .clients-grid {
@@ -1321,16 +1359,34 @@ a:hover::after {
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
-    padding-left: 160px;
-    padding-right: 160px;
+    padding: 0;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    flex: 1;
+    width: max-content;
+    margin-right: -200px;
 }
 
 .clients-grid::-webkit-scrollbar {
     display: none;
+}
+
+/* Animation when scrolling to clients section */
+.clients.fade-in .clients-grid {
+    animation: slideInLogos 1.5s ease-out;
+}
+
+@keyframes slideInLogos {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .client-logo {

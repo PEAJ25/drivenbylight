@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="project-content">
-                                <h3 class="project-title-2">customer<br> experience agency</h3>
+                                <h3 class="project-title-2">project<br> management</h3>
                             </div>
                         </div>
                         <div class="project-slide">
@@ -129,8 +129,25 @@
                                 </div>
                             </div>
                             <div class="project-content">
-                                <h3 class="project-title-3">project<br>
-                                management</h3>
+                                <h3 class="project-title-3">customer<br> experience agency</h3>
+                            </div>
+                        </div>
+                        <!-- Cloned first slide for infinite loop -->
+                        <div class="project-slide clone">
+                            <div class="project-image">
+                                <img src="images/projects/thumb-venema-teylers.jpg" alt="Project 1 Clone">
+                                <div class="projecten-video-background">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/psV_UYLaNvs?autoplay=1&mute=1&loop=1&playlist=psV_UYLaNvs&controls=0&showinfo=0&modestbranding=1&iv_load_policy=3&rel=0"
+                                        class="projecten-video"
+                                        frameborder="0" 
+                                        allow="autoplay; encrypted-media"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <h3 class="project-title-1">gevelrestauratie</h3>
                             </div>
                         </div>
                     </div>
@@ -177,7 +194,41 @@ Voor luchtopnames zijn wij geregistreerd bij de Dienst Wegverkeer (RDW) en gecer
 
                 <!-- Photo Services -->
                 <div class="service-column photo-services">
-                    <div class="service-background"></div>
+                    <div class="photo-carousel">
+                        <div class="photo-carousel-track">
+                            <div class="photo-carousel-slide active">
+                                <img src="images/video service/01.jpg" alt="Photo Service 1">
+                            </div>
+                            <div class="photo-carousel-slide">
+                                <img src="images/video service/02.jpg" alt="Photo Service 2">
+                            </div>
+                            <div class="photo-carousel-slide">
+                                <img src="images/video service/03.jpg" alt="Photo Service 3">
+                            </div>
+                            <div class="photo-carousel-slide">
+                                <img src="images/video service/04.jpg" alt="Photo Service 4">
+                            </div>
+                            <div class="photo-carousel-slide">
+                                <img src="images/video service/05.jpg" alt="Photo Service 5">
+                            </div>
+                            <div class="photo-carousel-slide">
+                                <img src="images/video service/06.jpg" alt="Photo Service 6">
+                            </div>
+                        </div>
+                        <div class="photo-carousel-controls">
+                            <button class="photo-carousel-btn prev" aria-label="Vorige foto">
+                                <img src="images/icon-chevron-left.svg" alt="Vorige">
+                            </button>
+                            <button class="photo-carousel-btn next" aria-label="Volgende foto">
+                                <img src="images/icon-chevron-right.svg" alt="Volgende">
+                            </button>
+                        </div>
+                        <div class="photo-carousel-progress">
+                            <div class="photo-progress-bar">
+                                <div class="photo-progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -197,6 +248,15 @@ Voor luchtopnames zijn wij geregistreerd bij de Dienst Wegverkeer (RDW) en gecer
                             </div>
                             <div class="photo-carousel-slide">
                                 <img src="images/photo-services-photo-03.png" alt="Photo Service 3">
+                            </div>
+                            <div class="photo-carousel-slide">
+                                <img src="images/project-photo-01.png" alt="Photo Service 4">
+                            </div>
+                            <div class="photo-carousel-slide">
+                                <img src="images/project-photo-02.png" alt="Photo Service 5">
+                            </div>
+                            <div class="photo-carousel-slide">
+                                <img src="images/videoservices-photo.png" alt="Photo Service 6">
                             </div>
                         </div>
                         
@@ -238,8 +298,10 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         <!-- Clients Section -->
         <section class="clients fade-in">
             <div class="container">
-                <div class="clients-header">
-                    <h3 class="clients-title">MERKEN</h3>
+                <div class="clients-container">
+                    <div class="clients-header">
+                        <h3 class="clients-title">MERKEN</h3>
+                    </div>
                     <div class="clients-grid">
                         <div class="client-logo">
                             <img src="images/logo-client-secwatch.svg" alt="Secwatch" class="client-logo-img">
@@ -463,15 +525,55 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
             btn.addEventListener('click', () => {
                 if (btn.classList.contains('next')) {
                     currentProjectSlide++;
+                    
+                    // If we've moved past the original last slide, reset to first without animation
+                    if (currentProjectSlide >= totalProjectSlides) {
+                        // Animate to the cloned first slide
+                        projectCarouselTrack.style.transition = 'transform 0.6s ease';
+                        projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
+                        
+                        // After animation, jump back to real first slide without transition
+                        setTimeout(() => {
+                            currentProjectSlide = 0;
+                            projectCarouselTrack.style.transition = 'none';
+                            projectCarouselTrack.style.transform = `translateX(0%)`;
+                            
+                            // Re-enable transition for next interaction
+                            setTimeout(() => {
+                                projectCarouselTrack.style.transition = 'transform 0.6s ease';
+                            }, 50);
+                        }, 600);
+                    } else {
+                        updateProjectCarousel();
+                    }
                 } else {
+                    // Previous button logic
+                    const wasFirstSlide = currentProjectSlide === 0;
                     currentProjectSlide--;
+                    
+                    // If we were on the first slide and going back
+                    if (wasFirstSlide) {
+                        // Jump to cloned last slide without animation
+                        currentProjectSlide = totalProjectSlides;
+                        projectCarouselTrack.style.transition = 'none';
+                        projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
+                        
+                        // Then animate to real last slide
+                        setTimeout(() => {
+                            currentProjectSlide = totalProjectSlides - 1;
+                            projectCarouselTrack.style.transition = 'transform 0.6s ease';
+                            projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
+                        }, 50);
+                    } else {
+                        // If we've moved before the first slide, go to last
+                        if (currentProjectSlide < 0) {
+                            currentProjectSlide = totalProjectSlides - 1;
+                        }
+                        
+                        updateProjectCarousel();
+                    }
                 }
                 
-                // Wrap around
-                if (currentProjectSlide < 0) currentProjectSlide = totalProjectSlides - 1;
-                if (currentProjectSlide >= totalProjectSlides) currentProjectSlide = 0;
-                
-                updateProjectCarousel();
                 resetProjectAutoProgress(); // Restart auto progress after user interaction
             });
         });
@@ -496,10 +598,17 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
             projectPageNumbers[0].textContent = currentProjectSlide + 1; // Current slide (1-based)
             projectPageNumbers[2].textContent = totalProjectSlides; // Total slides
             
-            // Update pagination current state
-            projectPageNumbers.forEach((number, index) => {
-                number.classList.toggle('current', index === 0); // Always highlight first number (current)
-            });
+            // Update current page indicator
+            projectPageNumbers.forEach(num => num.classList.remove('current'));
+            projectPageNumbers[1].classList.add('current');
+            
+            // Show/hide previous button based on current slide
+            const prevBtn = document.querySelector('.projecten-carousel .carousel-btn.prev');
+            if (currentProjectSlide === 0) {
+                prevBtn.classList.add('hidden');
+            } else {
+                prevBtn.classList.remove('hidden');
+            }
         }
 
         // Photo Carousel functionality
@@ -508,7 +617,7 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         const photoProgressFill = document.querySelector('.photo-progress-fill');
         const photoCarouselTrack = document.querySelector('.photo-carousel-track');
         let currentPhotoSlide = 0;
-        const totalPhotoSlides = 3;
+        const totalPhotoSlides = 6;
         let autoProgressInterval;
         let progressInterval;
         let currentProgress = 0;
