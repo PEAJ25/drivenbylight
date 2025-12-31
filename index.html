@@ -14,7 +14,7 @@
                 <img src="images/logo-sdbl.svg" alt="drivenbylight" class="nav-logo">
             </div>
             <button class="nav-toggle" aria-label="Toggle navigation">
-                <img src="images/icon-menu-mobile.svg" alt="Menu" class="nav-toggle-icon">
+                <img src="images/icons/menu-mobile.svg" alt="Menu" class="nav-toggle-icon">
             </button>
             <ul class="nav-menu">
                 <li><a href="#projecten-header">projecten</a></li>
@@ -57,7 +57,7 @@
         <!-- Scroll Indicator -->
         <section class="scroll-indicator">
             <a href="#projecten-header" class="scroll-arrow-link">
-                <img src="images/icon-chevron-down.svg" alt="Scroll naar projecten" class="scroll-arrow-icon">
+                <img src="images/icons/chevron-down.svg" alt="Scroll naar projecten" class="scroll-arrow-icon">
             </a>
         </section>
 
@@ -207,10 +207,10 @@
                 
                 <div class="carousel-controls">
                     <button class="carousel-btn prev" aria-label="Vorige project">
-                        <img src="images/icon-chevron-left.svg" alt="Vorige">
+                        <img src="images/icons/chevron-left.svg" alt="Vorige">
                     </button>
                     <button class="carousel-btn next" aria-label="Volgende project">
-                        <img src="images/icon-chevron-right.svg" alt="Volgende">
+                        <img src="images/icons/chevron-right.svg" alt="Volgende">
                     </button>
                 </div>
                 
@@ -269,10 +269,10 @@ Voor luchtopnames zijn wij geregistreerd bij de Dienst Wegverkeer (RDW) en gecer
                         </div>
                         <div class="photo-carousel-controls">
                             <button class="photo-carousel-btn prev" aria-label="Vorige foto">
-                                <img src="images/icon-chevron-left.svg" alt="Vorige">
+                                <img src="images/icons/chevron-left.svg" alt="Vorige">
                             </button>
                             <button class="photo-carousel-btn next" aria-label="Volgende foto">
-                                <img src="images/icon-chevron-right.svg" alt="Volgende">
+                                <img src="images/icons/chevron-right.svg" alt="Volgende">
                             </button>
                         </div>
                         <div class="photo-carousel-progress">
@@ -321,10 +321,10 @@ Voor luchtopnames zijn wij geregistreerd bij de Dienst Wegverkeer (RDW) en gecer
                     
                     <div class="photo-carousel-controls">
                         <button class="photo-carousel-btn prev" aria-label="Vorige foto">
-                            <img src="images/icon-chevron-left.svg" alt="Vorige" class="photo-carousel-arrow">
+                            <img src="images/icons/chevron-left.svg" alt="Vorige" class="photo-carousel-arrow">
                         </button>
                         <button class="photo-carousel-btn next" aria-label="Volgende foto">
-                            <img src="images/icon-chevron-right.svg" alt="Volgende" class="photo-carousel-arrow">
+                            <img src="images/icons/chevron-right.svg" alt="Volgende" class="photo-carousel-arrow">
                         </button>
                     </div>
                     
@@ -423,13 +423,13 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
 
                 <div class="social-links">
                     <a href="https://www.youtube.com/@studiodrivenbylight" class="social-link youtube" aria-label="YouTube" target="_blank">
-                        <img src="images/icon-social-youtube.svg" alt="YouTube" class="social-icon">
+                        <img src="images/icons/youtube.svg" alt="YouTube" class="social-icon">
                     </a>
                     <a href="https://www.linkedin.com/company/drivenbylight/" class="social-link linkedin" aria-label="LinkedIn" target="_blank">
-                        <img src="images/icon-social-linkedin.svg" alt="LinkedIn" class="social-icon">
+                        <img src="images/icons/linkedin.svg" alt="LinkedIn" class="social-icon">
                     </a>
                     <a href="https://www.instagram.com/studiodrivenbylight/" class="social-link instagram" aria-label="Instagram" target="_blank">
-                        <img src="images/icon-social-instagram.svg" alt="Instagram" class="social-icon">
+                        <img src="images/icons/instagram.svg" alt="Instagram" class="social-icon">
                     </a>
                 </div>
             </div>
@@ -479,10 +479,43 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         // Mobile navigation toggle
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
+        const navToggleIcon = document.querySelector('.nav-toggle-icon');
         
         navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('nav-menu--active');
+            const isActive = navMenu.classList.toggle('nav-menu--active');
             navToggle.classList.toggle('nav-toggle--active');
+            
+            // Toggle icon between menu and close with fade effect
+            if (isActive) {
+                // Fade out menu icon
+                navToggleIcon.style.opacity = '0';
+                setTimeout(() => {
+                    navToggleIcon.src = 'images/icons/close-mobile.svg';
+                    navToggleIcon.style.opacity = '1';
+                }, 150);
+            } else {
+                // Fade out close icon
+                navToggleIcon.style.opacity = '0';
+                setTimeout(() => {
+                    navToggleIcon.src = 'images/icons/menu-mobile.svg';
+                    navToggleIcon.style.opacity = '1';
+                }, 150);
+            }
+        });
+
+        // Close menu when clicking on navigation links
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('nav-menu--active');
+                navToggle.classList.remove('nav-toggle--active');
+                
+                // Animate back to menu icon
+                navToggleIcon.style.opacity = '0';
+                setTimeout(() => {
+                    navToggleIcon.src = 'images/icons/menu-mobile.svg';
+                    navToggleIcon.style.opacity = '1';
+                }, 150);
+            });
         });
 
         // Smooth scrolling for navigation links
