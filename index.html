@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="project-content">
-                                <h3 class="project-title">gevelrestauratie</h3>
+                                <h3 class="project-title">gevel<br>restauratie</h3>
                             </div>
                         </div>
                         <div class="project-slide">
@@ -525,6 +525,7 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         const projectCarouselTrack = document.querySelector('.projecten-carousel .carousel-track');
         let currentProjectSlide = 0;
         const totalProjectSlides = 6;
+        let totalCyclesCompleted = 0; // Track how many times we've cycled through all slides
         let projectAutoProgressInterval;
         let projectProgressInterval;
         let projectCurrentProgress = 0;
@@ -551,7 +552,9 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                     setTimeout(() => {
                         const wasLastSlide = currentProjectSlide === totalProjectSlides - 1;
                         currentProjectSlide++;
-                        if (currentProjectSlide >= totalProjectSlides) currentProjectSlide = 0;
+                        if (currentProjectSlide >= totalProjectSlides) {
+                            currentProjectSlide = 0;
+                        }
                         
                         if (wasLastSlide) {
                             // Special animation for last to first transition - show both projects
@@ -563,11 +566,12 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                                 projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
                             }, 50);
                         } else {
-                            // Normal transition - show both projects
+                            // Normal transition
                             projectCarouselTrack.style.transition = 'transform 0.6s ease';
                             projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
                         }
                         
+                        updateProjectCarousel(); // Update numbering and UI
                         startProjectAutoProgress(); // Restart progress for next slide
                     }, 200);
                 } else {
@@ -586,55 +590,18 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
             btn.addEventListener('click', () => {
                 if (btn.classList.contains('next')) {
                     currentProjectSlide++;
-                    
-                    // If we've moved past the original last slide, reset to first without animation
                     if (currentProjectSlide >= totalProjectSlides) {
-                        // Animate to the cloned first slide
-                        projectCarouselTrack.style.transition = 'transform 0.6s ease';
-                        projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
-                        
-                        // After animation, jump back to real first slide without transition
-                        setTimeout(() => {
-                            currentProjectSlide = 0;
-                            projectCarouselTrack.style.transition = 'none';
-                            projectCarouselTrack.style.transform = `translateX(0%)`;
-                            
-                            // Re-enable transition for next interaction
-                            setTimeout(() => {
-                                projectCarouselTrack.style.transition = 'transform 0.6s ease';
-                            }, 50);
-                        }, 600);
-                    } else {
-                        updateProjectCarousel();
+                        currentProjectSlide = 0;
                     }
                 } else {
                     // Previous button logic
-                    const wasFirstSlide = currentProjectSlide === 0;
                     currentProjectSlide--;
-                    
-                    // If we were on the first slide and going back
-                    if (wasFirstSlide) {
-                        // Jump to cloned last slide without animation
-                        currentProjectSlide = totalProjectSlides;
-                        projectCarouselTrack.style.transition = 'none';
-                        projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
-                        
-                        // Then animate to real last slide
-                        setTimeout(() => {
-                            currentProjectSlide = totalProjectSlides - 1;
-                            projectCarouselTrack.style.transition = 'transform 0.6s ease';
-                            projectCarouselTrack.style.transform = `translateX(-${currentProjectSlide * 100}%)`;
-                        }, 50);
-                    } else {
-                        // If we've moved before the first slide, go to last
-                        if (currentProjectSlide < 0) {
-                            currentProjectSlide = totalProjectSlides - 1;
-                        }
-                        
-                        updateProjectCarousel();
+                    if (currentProjectSlide < 0) {
+                        currentProjectSlide = totalProjectSlides - 1;
                     }
                 }
                 
+                updateProjectCarousel();
                 resetProjectAutoProgress(); // Restart auto progress after user interaction
             });
         });
@@ -654,10 +621,10 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
             const progressPercentage = ((currentProjectSlide + 1) / totalProjectSlides) * 100;
             projectProgressFill.style.width = `${progressPercentage}%`;
             
-            // Update pagination numbers to show current slide and total slides
+            // Update pagination numbers to cycle between 1-6
             const projectPageNumbers = document.querySelectorAll('.projecten-carousel .page-number');
-            projectPageNumbers[0].textContent = currentProjectSlide + 1; // Current slide (1-based)
-            projectPageNumbers[2].textContent = totalProjectSlides; // Total slides
+            projectPageNumbers[0].textContent = currentProjectSlide + 1; // Current slide (1-6)
+            projectPageNumbers[2].textContent = totalProjectSlides; // Always show 6 as max
             
             // Update current page indicator
             projectPageNumbers.forEach(num => num.classList.remove('current'));
@@ -946,6 +913,22 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         
         // Start auto progress on page load
         startProjectAutoProgress();
+    </script>
+<script>
+        // Handle persistent active state for nav-menu links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                });
+            });
+        });
     </script>
 </body>
 </html>
