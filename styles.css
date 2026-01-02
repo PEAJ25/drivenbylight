@@ -2012,15 +2012,66 @@ a:hover::after {
     width: 366px;
   }
 
+  .projecten-carousel .carousel-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 24px;
+    padding: 0 !important;
+    display: flex;
+    gap: 24px;
+    pointer-events: none;
+    z-index: 100 !important;
+  }
+
   .services-container,
   .photo-service-container {
     flex-direction: column;
     height: auto;
   }
 
-  .service-column,
-  .photo-service-column {
+  .service-column.video-services {
+    height: 448px;
+    order: 1 !important;
     width: 100% !important;
+  }
+
+  .service-column.photo-services {
+    order: 2 !important;
+    width: 100% !important;
+  }
+
+  .clients-container {
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .clients-header {
+    text-align: center;
+    align-self: center;
+    width: 100%;
+  }
+
+  .clients {
+    height: 224px !important;
+    min-height: unset !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+  }
+
+  .clients-title {
+    text-align: center !important;
+  }
+
+  .projecten-carousel .project-content {
+    top: unset !important;
+    transform: none !important;
+  }
+
+  .projecten-carousel .project-content h3 {
+    text-align: left !important;
   }
 
   .video-services .service-column {
@@ -2099,28 +2150,74 @@ a:hover::after {
   .projecten-header-content {
     width: 366px !important;
     padding: 0 !important;
+    gap: 24px !important;
   }
 
   .scroll-indicator {
     height: 104px !important;
   }
 
-  .photo-service-column.text-column {
-    height: 448px !important;
-  }
-
   .photo-service-container {
-    height: 896px !important;
+    height: auto !important;
+    flex-direction: column !important;
+    display: flex !important;
   }
 
   .photo-carousel {
     height: 448px !important;
     display: block !important;
+    order: 2;
+  }
+
+  .photo-service-column.text-column {
+    height: 448px !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    order: 1;
+    min-height: unset !important;
+  }
+
+  .photo-service-content {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    flex-direction: column !important;
+    gap: 16px !important;
   }
 
   .photo-carousel-track,
   .photo-carousel-slide {
     height: 448px !important;
+  }
+
+  .photo-services .photo-carousel {
+    height: 448px !important;
+    width: 100% !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .photo-services .photo-carousel-track {
+    display: flex !important;
+    width: 600vw !important;
+    height: 448px !important;
+  }
+
+  .photo-services .photo-carousel-slide {
+    width: 100vw !important;
+    height: 448px !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .photo-services .photo-carousel-slide img {
+    width: 100% !important;
+    height: 448px !important;
+    object-fit: cover !important;
   }
 
   .contact-methods {
@@ -2438,6 +2535,10 @@ a:hover::after {
   .photo-service-column.text-column {
     width: 100% !important;
     padding: 32px 24px 0 24px;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
   }
 
   .photo-service-content {
@@ -2561,90 +2662,3 @@ a:hover::after {
   .photo-service-section {
     margin-bottom: 32px;
   }
-
-  /* =========================
-   LIGHT MODE (default)
-========================= */
-
-:root {
-  --font-color: #001427;
-
-  --bg-main: #FFFFFF;
-  --bg-alt: #FAF9F7;
-}
-
-/* Global text */
-body {
-  color: var(--font-color);
-  background-color: var(--bg-main);
-}
-
-/* Header */
-header {
-  background-color: var(--bg-main);
-}
-
-/* Scroll indicator */
-.scroll-indicator {
-  background-color: var(--bg-alt);
-}
-
-/* Projecten header */
-.projecten-header {
-  background-color: var(--bg-main);
-}
-
-/* Service column – video services */
-.service-column.video-services {
-  background-color: var(--bg-main);
-}
-
-/* Photo service – text column */
-.photo-service-column .text-column {
-  background-color: var(--bg-main);
-}
-
-/* Client, contact & footer */
-.client-section,
-.contact-section,
-footer {
-  background-color: var(--bg-alt);
-}
-
-/* =========================
-   DARK MODE (system-based)
-========================= */
-
-@media (prefers-color-scheme: dark) {
-
-  body,
-  header,
-  .projecten-header,
-  .service-column.video-services,
-  .photo-service-column .text-column {
-    background-color: #0D1117 !important;
-    color: #E4E6EB !important;
-  }
-
-  .scroll-indicator,
-  .client-section,
-  .contact-section,
-  footer {
-    background-color: #1A1C21 !important;
-    color: #E4E6EB !important;
-  }
-}
-@media (prefers-color-scheme: dark) {
-
-  * {
-    background-color: #0D1117 !important;
-    color: #E4E6EB !important;
-  }
-
-  .scroll-indicator,
-  .client-section,
-  .contact-section,
-  footer {
-    background-color: #1A1C21 !important;
-  }
-}
