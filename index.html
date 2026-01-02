@@ -427,15 +427,18 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                 </div>
 
                 <div class="social-links">
-                    <a href="https://www.youtube.com/@studiodrivenbylight" class="social-link youtube" aria-label="YouTube" target="_blank">
-                        <img src="images/icons/youtube.svg" alt="YouTube" class="social-icon">
-                    </a>
-                    <a href="https://www.linkedin.com/company/drivenbylight/" class="social-link linkedin" aria-label="LinkedIn" target="_blank">
-                        <img src="images/icons/linkedin.svg" alt="LinkedIn" class="social-icon">
-                    </a>
-                    <a href="https://www.instagram.com/studiodrivenbylight/" class="social-link instagram" aria-label="Instagram" target="_blank">
-                        <img src="images/icons/instagram.svg" alt="Instagram" class="social-icon">
-                    </a>
+                    <span class="social-text">blijf op de hoogte</span>
+                    <div class="social-icons-wrapper">
+                        <a href="https://www.youtube.com/@studiodrivenbylight" class="social-link youtube" aria-label="YouTube" target="_blank">
+                            <img src="images/icons/youtube.svg" alt="YouTube" class="social-icon">
+                        </a>
+                        <a href="https://www.linkedin.com/company/drivenbylight/" class="social-link linkedin" aria-label="LinkedIn" target="_blank">
+                            <img src="images/icons/linkedin.svg" alt="LinkedIn" class="social-icon">
+                        </a>
+                        <a href="https://www.instagram.com/studiodrivenbylight/" class="social-link instagram" aria-label="Instagram" target="_blank">
+                            <img src="images/icons/instagram.svg" alt="Instagram" class="social-icon">
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -573,7 +576,9 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         function startProjectAutoProgress() {
             // Reset progress
             projectCurrentProgress = 0;
-            projectProgressFill.style.width = '0%';
+            if (projectProgressFill) {
+                projectProgressFill.style.width = '0%';
+            }
             
             // Clear any existing intervals
             clearInterval(projectAutoProgressInterval);
@@ -584,7 +589,9 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                 projectCurrentProgress += projectProgressStep;
                 if (projectCurrentProgress >= 100) {
                     projectCurrentProgress = 100;
-                    projectProgressFill.style.width = '100%';
+                    if (projectProgressFill) {
+                        projectProgressFill.style.width = '100%';
+                    }
                     
                     // Move to next slide
                     setTimeout(() => {
@@ -613,7 +620,9 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                         startProjectAutoProgress(); // Restart progress for next slide
                     }, 200);
                 } else {
-                    projectProgressFill.style.width = `${projectCurrentProgress}%`;
+                    if (projectProgressFill) {
+                        projectProgressFill.style.width = `${projectCurrentProgress}%`;
+                    }
                 }
             }, 50);
         }

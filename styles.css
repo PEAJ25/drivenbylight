@@ -355,8 +355,10 @@ a:hover::after {
 
 .cookie-buttons {
     display: flex;
+    flex-direction: row;
     gap: 24px;
-    width: 100%;
+    width: auto;
+    justify-content: flex-start;
 }
 
 .cookie-accept-btn {
@@ -758,7 +760,7 @@ a:hover::after {
     opacity: 1 !important;
     transition: opacity 0.3s ease !important;
     background-color: #FAF9F7 !important;
-}
+  }
 
 .scroll-arrow-link {
     display: inline-block;
@@ -810,12 +812,17 @@ a:hover::after {
 .projecten-header {
     width: 100%;
     background-color: var(--color-white);
+    height: 540px;
+    display: flex;
+    align-items: center;
 }
 
 .projecten-header-content {
     display: flex;
     max-width: 1200px;
     margin: 0 auto;
+    align-items: center;
+    gap: 40px;
 }
 
 .projecten-header-left {
@@ -967,7 +974,7 @@ a:hover::after {
     flex-direction: column;
     justify-content: center;
     text-align: left;
-    z-index: 10;
+    z-index: 20 !important;
     pointer-events: none;
 }
 
@@ -978,7 +985,7 @@ a:hover::after {
     line-height: 120px !important;
     color: #ffffff;
     margin-bottom: var(--spacing-lg);
-    padding-left: 0;
+    text-align: left !important;
 }
 
 .projecten-carousel .project-title-1,
@@ -1075,7 +1082,7 @@ a:hover::after {
     height: 2px !important;
     background-color: #ffffff;
     width: 0%;
-    transition: width 0.6s ease;
+    transition: width 0.1s linear;
 }
 
 .projecten-carousel .page-number {
@@ -1701,6 +1708,30 @@ a:hover::after {
     display: flex;
     gap: 48px;
     justify-content: center;
+    align-items: center;
+}
+
+.social-text {
+    width: 259px;
+    height: 32px;
+    font-family: 'Metropolis';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #001427;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.social-icons-wrapper {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    align-items: center;
 }
 
 .social-link {
@@ -1968,12 +1999,17 @@ a:hover::after {
   .projecten-header-content {
     flex-direction: column;
     padding: 0 64px;
+    align-items: flex-start;
   }
 
   .projecten-header-title {
     font-size: 64px;
     line-height: 64px !important;
     white-space: normal;
+  }
+
+  .projecten-header-description {
+    width: 366px;
   }
 
   .services-container,
@@ -2065,6 +2101,10 @@ a:hover::after {
     padding: 0 !important;
   }
 
+  .scroll-indicator {
+    height: 104px !important;
+  }
+
   .photo-service-column.text-column {
     height: 448px !important;
   }
@@ -2115,7 +2155,32 @@ a:hover::after {
   }
 
   .social-links {
+    flex-direction: column;
     gap: 24px !important;
+    align-items: center;
+  }
+
+  .social-text {
+    width: 216px;
+    height: 32px;
+    font-family: 'Metropolis';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #001427;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+
+  .social-icons-wrapper {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
   }
 
   .footer p {
@@ -2497,4 +2562,89 @@ a:hover::after {
     margin-bottom: 32px;
   }
 
+  /* =========================
+   LIGHT MODE (default)
+========================= */
+
+:root {
+  --font-color: #001427;
+
+  --bg-main: #FFFFFF;
+  --bg-alt: #FAF9F7;
+}
+
+/* Global text */
+body {
+  color: var(--font-color);
+  background-color: var(--bg-main);
+}
+
+/* Header */
+header {
+  background-color: var(--bg-main);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  background-color: var(--bg-alt);
+}
+
+/* Projecten header */
+.projecten-header {
+  background-color: var(--bg-main);
+}
+
+/* Service column – video services */
+.service-column.video-services {
+  background-color: var(--bg-main);
+}
+
+/* Photo service – text column */
+.photo-service-column .text-column {
+  background-color: var(--bg-main);
+}
+
+/* Client, contact & footer */
+.client-section,
+.contact-section,
+footer {
+  background-color: var(--bg-alt);
+}
+
+/* =========================
+   DARK MODE (system-based)
+========================= */
+
+@media (prefers-color-scheme: dark) {
+
+  body,
+  header,
+  .projecten-header,
+  .service-column.video-services,
+  .photo-service-column .text-column {
+    background-color: #0D1117 !important;
+    color: #E4E6EB !important;
+  }
+
+  .scroll-indicator,
+  .client-section,
+  .contact-section,
+  footer {
+    background-color: #1A1C21 !important;
+    color: #E4E6EB !important;
+  }
+}
+@media (prefers-color-scheme: dark) {
+
+  * {
+    background-color: #0D1117 !important;
+    color: #E4E6EB !important;
+  }
+
+  .scroll-indicator,
+  .client-section,
+  .contact-section,
+  footer {
+    background-color: #1A1C21 !important;
+  }
 }
