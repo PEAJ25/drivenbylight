@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Drivenbylight</title>
+    <title>Drivenbylight</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="images/icons/favicon.png">
@@ -740,9 +740,11 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                 slide.classList.toggle('active', index === currentPhotoServicesSlide);
             });
             
-            // Update slide position with ease
+            // Update slide position with ease - use 100vw for mobile
+            const isMobile = window.innerWidth <= 414;
+            const slideWidth = isMobile ? 100 : 50;
             photoServicesCarouselTrack.style.transition = 'transform 0.6s ease';
-            photoServicesCarouselTrack.style.transform = `translateX(-${currentPhotoServicesSlide * 50}vw)`;
+            photoServicesCarouselTrack.style.transform = `translateX(-${currentPhotoServicesSlide * slideWidth}vw)`;
             
             // Update progress bar
             const progressPercentage = ((currentPhotoServicesSlide + 1) / totalPhotoServicesSlides) * 100;
@@ -918,9 +920,11 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                 slide.classList.toggle('active', index === currentPhotoServiceSectionSlide);
             });
             
-            // Update slide position with ease
+            // Update slide position with ease - use 100vw for mobile
+            const isMobile = window.innerWidth <= 414;
+            const slideWidth = isMobile ? 100 : 50;
             photoServiceSectionCarouselTrack.style.transition = 'transform 0.6s ease';
-            photoServiceSectionCarouselTrack.style.transform = `translateX(-${currentPhotoServiceSectionSlide * 50}vw)`;
+            photoServiceSectionCarouselTrack.style.transform = `translateX(-${currentPhotoServiceSectionSlide * slideWidth}vw)`;
             
             // Update progress bar
             const progressPercentage = ((currentPhotoServiceSectionSlide + 1) / totalPhotoServiceSectionSlides) * 100;

@@ -1315,36 +1315,38 @@ a:hover::after {
 .photo-carousel-track {
     display: flex;
     width: 300vw;
-    height: 1080px;
+    height: 1080px !important;
     transition: transform 0.6s ease;
     overflow: hidden;
     gap: 0;
 }
 
-.photo-service-section .photo-carousel-track {
+.video-section .photo-carousel-track {
     display: flex;
-    width: 300vw;
-    height: 1080px;
+    width: 600vw !important;
+    height: 448px !important;
     transition: transform 0.6s ease;
     overflow: hidden;
     gap: 0;
+}
+
+.video-section .photo-carousel-slide {
+    width: 100vw !important;
+    height: 448px !important;
 }
 
 .photo-carousel-slide {
     width: 50vw;
-    height: 1080px;
     transition: opacity 0.6s ease;
     flex-shrink: 0;
     position: relative;
     opacity: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .photo-carousel-slide.active {
     opacity: 1;
     position: relative;
+    height: auto !important;
 }
 
 .photo-services .photo-carousel-slide::before {
@@ -1397,8 +1399,8 @@ a:hover::after {
 
 .photo-carousel-btn {
     pointer-events: all;
-    width: 64px;
-    height: 64px;
+    width: 64px !important;
+    height: 64px !important;
     background-color: transparent;
     border: 2px solid #ffffff;
     border-radius: var(--border-radius-full);
@@ -2294,7 +2296,7 @@ a:hover::after {
   }
 
   .projecten-carousel .project-content h3 {
-    text-align: center !important;
+    text-align: left !important;
   }
 
   .project-title {
@@ -2394,7 +2396,8 @@ a:hover::after {
 
   .photo-carousel-track,
   .photo-carousel-slide {
-    height: 320px;
+    height: 1080px !important;
+    width: 100%;
   }
 
   .contact-methods {
@@ -2474,20 +2477,31 @@ a:hover::after {
   }
 
   .photo-carousel {
-    height: 280px;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    width: 100%;
+    height: 448px !important;
+    overflow: hidden;
   }
 
-  .photo-carousel-track,
-  .photo-carousel-slide {
-    height: 280px;
+  .photo-service-section .photo-carousel-track,
+  .photo-service-section .photo-carousel-slide {
+    height: 448px !important;
     width: 100%;
   }
+  
+  .photo-service-section .photo-carousel-slide {
+    height: 448px !important;
+    width: 100vw !important;
+    flex-shrink: 0;
+    position: relative;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-  .photo-carousel-slide img {
+  .photo-service-section .photo-carousel-slide img {
     object-fit: cover;
+    height: 448px !important;
   }
 
   /* Overlay iets lichter (zoals Figma) */
@@ -2560,10 +2574,11 @@ a:hover::after {
   .photo-service-section {
     padding: 0;
     min-height: unset;
+    margin-bottom: 0 !important;
   }
 
   .photo-service-container {
-    flex-direction: column;
+    flex-direction: column !important;
     height: auto;
     align-items: center;
   }
@@ -2572,25 +2587,50 @@ a:hover::after {
   .photo-service-column.photo-column {
     width: 100% !important;
     min-height: unset;
+    order: 3;
+  }
+  
+  .photo-service-column.text-column {
+    width: 100% !important;
+    padding: 32px 24px;
+    display: flex !important;
+    flex-direction: column !important;
     order: 1;
+    position: relative !important;
+  }
+  
+  .photo-carousel-progress {
+    padding-left: 24px !important;
   }
 
   .photo-carousel {
     width: 100%;
-    height: 280px;
+    height: 448px !important;
     overflow: hidden;
   }
 
   .photo-carousel-track,
   .photo-carousel-slide {
-    height: 280px;
-    width: 100%;
+    height: 448px !important;
+    width: 100vw !important;
   }
 
   .photo-carousel-slide img {
     object-fit: cover;
     width: 100%;
-    height: 280px;
+    height: 1080px !important;
+  }
+  
+  .photo-carousel-slide {
+    width: 50vw;
+    height: 1080px !important;
+    transition: opacity 0.6s ease;
+    flex-shrink: 0;
+    position: relative;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* overlay darkness like design */
@@ -2651,6 +2691,12 @@ a:hover::after {
     margin-bottom: 16px;
     text-transform: none;
   }
+  
+  .photo-service-section .photo-carousel-btn {
+    pointer-events: all !important;
+    z-index: 100 !important;
+    position: relative !important;
+  }
 
   .photo-service-description {
     font-size: 16px;
@@ -2710,4 +2756,34 @@ a:hover::after {
   .projecten-carousel .project-title-6 {
     line-height: normal !important;
   }
+}
+/* Desktop photo carousel height fix */
+@media (min-width: 769px) {
+  .photo-carousel-slide {
+    height: 1080px !important;
+  }
+  
+  .photo-carousel-track {
+    height: 1080px !important;
+  }
+}
+
+.photo-service-container {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 768px) {
+    .photo-service-container {
+        flex-direction: column;
+    }
+
+    .photo-service-column.text-column {
+        order: 1;
+    }
+
+    .photo-service-column.carousel-column {
+        order: 2;
+        position: relative;
+    }
 }
