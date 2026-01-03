@@ -1824,7 +1824,7 @@ a:hover::after {
 /* Responsive Design */
 
 /* Small Mobile (414px and up) */
-@media {
+@media (max-width: 414px) {
     .hero-title {
         font-size: 3rem;
     }
@@ -2662,3 +2662,52 @@ a:hover::after {
   .photo-service-section {
     margin-bottom: 32px;
   }
+
+/* =========================
+   PROJECTEN — MOBILE
+   ========================= */
+
+@media (max-width: 414px) {
+  .projecten-carousel {
+    height: 896px !important;
+  }
+  
+  .projecten-carousel .project-content {
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+    text-align: center !important;
+    line-height: 64px !important;
+  }
+  
+  .projecten-carousel .project-content h3 {
+    line-height: 64px !important;
+    transform: translateY(152px) !important;
+  }
+  
+  .projecten-carousel .carousel-pagination {
+    right: auto !important;
+    left: 24px !important;
+    justify-content: flex-start !important;
+    bottom: -100px !important;
+    font-size: 24px !important;
+  }
+  
+  .projecten-carousel .carousel-controls {
+    bottom: 152px !important;
+    left: 24px !important;
+  }
+  
+  .projecten-carousel .page-number.current,
+  .projecten-carousel .page-number.total {
+    font-size: 24px !important;
+  }
+  
+  .projecten-carousel .project-title-1,
+  .projecten-carousel .project-title-2,
+  .projecten-carousel .project-title-3,
+  .projecten-carousel .project-title-4,
+  .projecten-carousel .project-title-5,
+  .projecten-carousel .project-title-6 {
+    line-height: normal !important;
+  }
+}
