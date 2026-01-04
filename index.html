@@ -920,8 +920,8 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
                 slide.classList.toggle('active', index === currentPhotoServiceSectionSlide);
             });
             
-            // Update slide position with ease - use 100vw for mobile
-            const isMobile = window.innerWidth <= 414;
+            // Update slide position with ease - use 100vw for mobile to show 1 slide at a time
+            const isMobile = window.innerWidth <= 768;
             const slideWidth = isMobile ? 100 : 50;
             photoServiceSectionCarouselTrack.style.transition = 'transform 0.6s ease';
             photoServiceSectionCarouselTrack.style.transform = `translateX(-${currentPhotoServiceSectionSlide * slideWidth}vw)`;

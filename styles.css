@@ -367,7 +367,7 @@ a:hover::after {
     justify-content: center;
     align-items: center;
     padding: 24px 40px;
-    width: 100%;
+    width: auto;
     height: 72px;
     border-radius: 80px;
     background-color: transparent;
@@ -379,7 +379,7 @@ a:hover::after {
     font-weight: 600 !important;
     cursor: pointer;
     transition: all 0.3s ease;
-    flex: none;
+    flex: 1;
     order: 0;
     flex-grow: 0;
 }
@@ -1321,18 +1321,22 @@ a:hover::after {
     gap: 0;
 }
 
-.video-section .photo-carousel-track {
+/* Photo Service Section Carousel */
+.photo-service-section .photo-carousel-track {
     display: flex;
-    width: 600vw !important;
-    height: 448px !important;
+    width: 600vw;
+    height: 1080px !important;
     transition: transform 0.6s ease;
     overflow: hidden;
     gap: 0;
 }
 
-.video-section .photo-carousel-slide {
-    width: 100vw !important;
-    height: 448px !important;
+.photo-service-section .photo-carousel-slide {
+    width: 50vw;
+    transition: opacity 0.6s ease;
+    flex-shrink: 0;
+    position: relative;
+    opacity: 1;
 }
 
 .photo-carousel-slide {
@@ -2609,7 +2613,11 @@ a:hover::after {
     overflow: hidden;
   }
 
-  .photo-carousel-track,
+  .photo-carousel-track {
+    height: 448px !important;
+    width: 600vw !important;
+  }
+  
   .photo-carousel-slide {
     height: 448px !important;
     width: 100vw !important;
@@ -2618,19 +2626,7 @@ a:hover::after {
   .photo-carousel-slide img {
     object-fit: cover;
     width: 100%;
-    height: 1080px !important;
-  }
-  
-  .photo-carousel-slide {
-    width: 50vw;
-    height: 1080px !important;
-    transition: opacity 0.6s ease;
-    flex-shrink: 0;
-    position: relative;
-    opacity: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 100% !important;
   }
 
   /* overlay darkness like design */
@@ -2785,5 +2781,94 @@ a:hover::after {
     .photo-service-column.carousel-column {
         order: 2;
         position: relative;
+    }
+    
+    /* Fix photo carousel for mobile */
+    .photo-carousel-track {
+        width: 600vw !important;
+        height: 448px !important;
+    }
+    
+    .photo-carousel-slide {
+        width: 100vw !important;
+        height: 448px !important;
+    }
+    
+    /* Fix photo service section carousel for mobile */
+    .photo-service-section .photo-carousel {
+        overflow: hidden !important;
+        height: 448px !important;
+    }
+    
+    .photo-service-section .photo-carousel-track {
+        display: flex !important;
+        width: 600vw !important;
+        height: 448px !important;
+        transition: transform 0.6s ease !important;
+    }
+    
+    .photo-service-section .photo-carousel-slide {
+        width: 100vw !important;
+        height: 448px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .clients-header {
+        width: auto !important;
+    }
+    
+    .clients-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 24px !important;
+        padding: 0 24px !important;
+        width: 100% !important;
+    }
+    
+    .client-logo {
+        flex: 0 0 auto !important;
+        min-width: 150px !important;
+        scroll-snap-align: center !important;
+    }
+    
+    .photo-services .photo-carousel-progress {
+        padding-left: 40px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    .photo-services .service-column {
+        width: auto !important;
+    }
+    
+    .video-section .service-column {
+        width: auto !important;
+    }
+    
+    .service-column {
+        width: auto !important;
+    }
+    
+    .service-column.video-services {
+        width: auto !important;
+    }
+}
+
+/* Desktop cookie buttons - side by side */
+@media (min-width: 769px) {
+    .cookie-accept-btn {
+        width: auto;
+        flex: 1;
+    }
+}
+
+/* Mobile cookie buttons - stacked */
+@media (max-width: 768px) {
+    .cookie-accept-btn {
+        width: 100%;
+        flex: none;
     }
 }
