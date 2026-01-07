@@ -876,7 +876,6 @@ a:hover::after {
     height: 360px;
     z-index: 5;
     overflow: hidden;
-    border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -2089,6 +2088,82 @@ a:hover::after {
     font-size: 64px !important;
     line-height: 72px !important;
   }
+  
+  /* Tablet projecten content positioning */
+  .projecten-carousel .project-content {
+    left: 80px !important;
+  }
+  
+  /* Tablet carousel controls positioning */
+  .projecten-carousel .carousel-controls {
+    left: 80px !important;
+  }
+  
+  /* Tablet video background positioning */
+  .projecten-carousel .projecten-video-background {
+    left: 80px !important;
+  }
+  
+  /* Tablet contact methods - 2 per row */
+  .contact-methods {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  /* Tablet contact button padding */
+  .contact-btn {
+    padding: 0 40px !important;
+  }
+  
+  /* Tablet social links layout */
+  .social-links {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+  
+  /* Tablet footer break after dash */
+  .footer .tablet-break {
+    display: block !important;
+    margin-bottom: 8px !important;
+  }
+  
+  /* Tablet footer break after privacy link */
+  .footer .tablet-break-privacy {
+    display: block !important;
+    margin-bottom: 8px !important;
+  }
+  
+  /* Tablet photo services full width slides */
+  .photo-services .photo-carousel-slide {
+    width: 100vw !important;
+  }
+  
+  .photo-services .photo-carousel-track {
+    width: 600vw !important;
+  }
+  
+  /* Tablet service-column photo services full width slides */
+  .service-column.photo-services .photo-carousel-slide {
+    width: 100vw !important;
+  }
+  
+  .service-column.photo-services .photo-carousel-track {
+    width: 600vw !important;
+  }
+  
+  /* Tablet all photo carousel slides full width */
+  .photo-carousel-slide {
+    width: 100vw !important;
+  }
+  
+  /* Tablet photo carousel progress padding */
+  .photo-carousel-progress {
+    padding-right: 80px !important;
+    padding-bottom: 80px !important;
+  }
 }
 /* ---------- Mobile (≤ 414px) ---------- */
 @media (max-width: 414px) {
@@ -2289,6 +2364,7 @@ a:hover::after {
   .footer p {
     line-height: 40px !important;
     font-size: 20px !important;
+    font-weight: 500 !important;
   }
 
   .hero {
@@ -2871,4 +2947,48 @@ a:hover::after {
         width: 100%;
         flex: none;
     }
+}
+/* =========================
+   TABLET BREAKPOINT – 810px
+   (Windsurf free)
+   ========================= */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+    /* Algemene container spacing */
+    .container,
+    .section,
+    .content {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    /* Typografie iets kleiner dan desktop */
+    h1 {
+        font-size: 48px;
+        line-height: 1.1;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    /* 2 kolommen i.p.v. desktop layout */
+    .grid,
+    .columns,
+    .services-grid,
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+
+    /* Hero / header iets compacter */
+    .hero,
+    .projects-header {
+        min-height: 70vh;
+    }
+
 }
