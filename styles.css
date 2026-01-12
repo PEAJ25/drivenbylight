@@ -2101,7 +2101,8 @@ a:hover::after {
   
   /* Tablet video background positioning */
   .projecten-carousel .projecten-video-background {
-    left: 80px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
   
   /* Tablet contact methods - 2 per row */
@@ -2436,6 +2437,10 @@ a:hover::after {
     right: auto !important;
   }
 
+  .projecten-video {
+    left: -136px !important;
+  }
+
   .photo-carousel {
     display: block !important;
     visibility: visible !important;
@@ -2591,9 +2596,9 @@ a:hover::after {
 
   /* Controls onderin, compact */
   .photo-services .photo-carousel-controls {
-    left: 16px;
-    bottom: 16px;
-    gap: 16px;
+    left: 40px !important;
+    bottom: 40px !important;
+    gap: 24px !important;
     z-index: 20 !important;
   }
 
@@ -2609,8 +2614,8 @@ a:hover::after {
 
   /* Pagination rechts */
   .photo-services .photo-carousel-progress {
-    right: 16px;
-    bottom: 18px;
+    left: 40px !important;
+    bottom: 40px !important;
     gap: 12px;
     padding: 0;
     z-index: 20 !important;
@@ -2678,9 +2683,15 @@ a:hover::after {
     order: 1;
     position: relative !important;
   }
+
+  .photo-service-section .photo-carousel-progress {
+    padding: 40px !important;
+    bottom: 40px !important;
+  }
   
   .photo-carousel-progress {
-    padding-left: 24px !important;
+    padding-left: 0 !important;
+    padding: 40px !important;
   }
 
   .photo-carousel {
@@ -2712,9 +2723,16 @@ a:hover::after {
 
   /* carousel controls */
   .photo-services .photo-carousel-controls {
-    left: 16px;
-    bottom: 16px;
-    gap: 12px;
+    left: 40px !important;
+    bottom: 40px !important;
+    gap: 24px !important;
+    z-index: 20 !important;
+  }
+
+  .photo-carousel-controls {
+    left: 40px !important;
+    bottom: 40px !important;
+    gap: 24px !important;
     z-index: 20 !important;
   }
 
@@ -2731,8 +2749,8 @@ a:hover::after {
 
   /* pagination bar & numbers */
   .photo-services .photo-carousel-progress {
-    right: 16px;
-    bottom: 18px;
+    left: 40px !important;
+    bottom: 40px !important;
     gap: 12px;
     z-index: 20 !important;
   }
@@ -2788,6 +2806,11 @@ a:hover::after {
 @media (max-width: 414px) {
   .projecten-carousel {
     height: 896px !important;
+  }
+  
+  .photo-service-section .photo-carousel-progress {
+    padding: 40px !important;
+    bottom: 40px !important;
   }
   
   .projecten-carousel .project-content {
@@ -2912,7 +2935,7 @@ a:hover::after {
     }
     
     .photo-services .photo-carousel-progress {
-        padding-left: 40px !important;
+        padding-left: 0 !important;
         padding-bottom: 40px !important;
     }
     

@@ -963,6 +963,77 @@ Een krachtig hulpmiddel om professionaliteit te tonen, vertrouwen te wekken en d
         
         // Start auto progress on page load
         startProjectAutoProgress();
+
+        // Swipe gesture functionality for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+        
+        // Function to handle swipe gestures
+        function handleSwipeGesture(carouselTrack, currentSlideVar, totalSlides, updateFunction, resetFunction) {
+            const swipeThreshold = 50; // Minimum distance for swipe
+            const verticalThreshold = 100; // Maximum vertical movement to prevent false swipes
+            
+            carouselTrack.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: true });
+            
+            carouselTrack.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
+                
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = Math.abs(touchEndY - touchStartY);
+                
+                // Only trigger swipe if horizontal movement is significant and vertical movement is minimal
+                if (Math.abs(deltaX) > swipeThreshold && deltaY < verticalThreshold) {
+                    if (deltaX > 0) {
+                        // Swipe right - previous slide
+                        currentSlideVar.value--;
+                        if (currentSlideVar.value < 0) {
+                            currentSlideVar.value = totalSlides - 1;
+                        }
+                    } else {
+                        // Swipe left - next slide
+                        currentSlideVar.value++;
+                        if (currentSlideVar.value >= totalSlides) {
+                            currentSlideVar.value = 0;
+                        }
+                    }
+                    
+                    updateFunction();
+                    resetFunction();
+                }
+            }, { passive: true });
+        }
+        
+        // Add swipe gestures to Photo Services Carousel
+        const photoServicesSwipeData = { value: currentPhotoServicesSlide };
+        handleSwipeGesture(
+            photoServicesCarouselTrack,
+            photoServicesSwipeData,
+            totalPhotoServicesSlides,
+            () => {
+                currentPhotoServicesSlide = photoServicesSwipeData.value;
+                updatePhotoServicesCarousel();
+            },
+            resetPhotoServicesAutoProgress
+        );
+        
+        // Add swipe gestures to Photo Service Section Carousel
+        const photoServiceSectionSwipeData = { value: currentPhotoServiceSectionSlide };
+        handleSwipeGesture(
+            photoServiceSectionCarouselTrack,
+            photoServiceSectionSwipeData,
+            totalPhotoServiceSectionSlides,
+            () => {
+                currentPhotoServiceSectionSlide = photoServiceSectionSwipeData.value;
+                updatePhotoServiceSectionCarousel();
+            },
+            resetPhotoServiceSectionAutoProgress
+        );
     </script>
 <script>
         // Handle persistent active state for nav-menu links
