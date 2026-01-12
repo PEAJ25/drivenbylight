@@ -1830,6 +1830,10 @@ a:hover::after {
 
 /* Small Mobile (414px and up) */
 @media (max-width: 414px) {
+    .hero {
+        height: 414px !important;
+    }
+    
     .hero-title {
         font-size: 3rem;
     }
@@ -2196,15 +2200,15 @@ a:hover::after {
   }
 
   .hero {
-    height: 680px !important;
+    height: 414px !important;
     width: 100vw !important;
   }
 
   .hero-video {
     position: absolute !important;
-    top: 50% !important;
+    top: 25% !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) scale(2.0) !important;
+    transform: translate(-50%, -50%) scale(1.5) !important;
     width: 150vw !important;
     height: 150vh !important;
     object-fit: cover !important;
